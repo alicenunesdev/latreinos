@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%; /* Light Grayish Blue */
+    --foreground: 220 13% 20%; /* Dark Slate Gray */
+    --card: 210 40% 96%; /* Lighter Grayish Blue */
+    --card-foreground: 220 13% 20%;
+    --popover: 210 40% 96%;
+    --popover-foreground: 220 13% 20%;
+    --primary: 190 60% 70%; /* Pastel Cyan */
+    --primary-foreground: 220 13% 13%; /* Darker Slate Gray for contrast */
+    --secondary: 280 60% 80%; /* Pastel Lavender */
+    --secondary-foreground: 220 13% 13%;
+    --muted: 210 30% 88%; /* Light Gray */
+    --muted-foreground: 215 20% 45%; /* Medium Gray */
+    --accent: 30 80% 75%; /* Pastel Peach */
+    --accent-foreground: 220 13% 13%;
+    --destructive: 0 70% 70%; /* Pastel Red */
+    --destructive-foreground: 210 40% 98%;
+    --border: 210 20% 80%; /* Light Gray Border */
+    --input: 210 30% 92%; /* Very Light Gray Input */
+    --ring: 190 60% 60%; /* Slightly darker Pastel Cyan for ring */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 220 13% 18%; /* Dark Slate Gray */
+    --foreground: 210 40% 98%; /* Light Grayish Blue */
+    --card: 220 13% 23%; /* Darker Slate Gray */
+    --card-foreground: 210 40% 98%;
+    --popover: 220 13% 23%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 190 50% 60%; /* Muted Pastel Cyan */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 280 50% 70%; /* Muted Pastel Lavender */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 220 13% 30%; /* Dark Gray */
+    --muted-foreground: 210 20% 65%; /* Medium Gray */
+    --accent: 30 70% 65%; /* Muted Pastel Peach */
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 60% 60%; /* Muted Pastel Red */
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 35%; /* Dark Gray Border */
+    --input: 220 13% 28%; /* Darker Gray Input */
+    --ring: 190 50% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Using a subtle pastel gradient */
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--secondary), 0.3) 100%);
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif; /* A clean, modern font */
+  }
+}
+
+.gradient-bg {
+  /* Primary gradient using pastel colors */
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+}
+
+.glass-effect {
+  background: hsla(var(--card), 0.8); /* More opaque for better readability with pastels */
+  backdrop-filter: blur(8px);
+  border: 1px solid hsla(var(--border), 0.5);
+  box-shadow: 0 4px 6px hsla(0, 0%, 0%, 0.05);
+}
+
+.timer-circle {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transition: stroke-dashoffset 1s linear;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 15px hsla(var(--primary), 0.4);
+  }
+  50% {
+    box-shadow: 0 0 25px hsla(var(--primary), 0.6);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Ensure inputs and buttons have good contrast and pastel feel */
+input, button {
+  @apply focus:ring-2 focus:ring-ring;
+}
+
+button.gradient-bg {
+  @apply text-primary-foreground;
+}
